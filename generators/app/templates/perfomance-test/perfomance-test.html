@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html>
+<head>
+  <title>my-elem test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
+
+  <link rel="import" href="/src/<%= elementName %>.html">
+</head>
+<body>
+<script>
+  window.begin = +new Date();
+  QUnit.module('Odd Tests');
+
+  HTMLImports.whenReady(function () {
+    window.end =  +new Date();
+    window.time = window.end - window.begin;
+    console.log('Load time: ' + time + 'ms');
+  });
+  document.addEventListener('WebComponentsReady', function() {
+    window.end =  +new Date();
+    window.time = window.end - window.begin;
+    console.log('Attached time: ' + time + 'ms');
+  });
+</script>
+<<%= elementName %>></<%= elementName %>>
+</body>
+</html>

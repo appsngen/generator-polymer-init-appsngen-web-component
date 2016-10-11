@@ -1,0 +1,16 @@
+[
+  {
+    "browserName"     : "IE",
+    "os"              : "windows",
+    "os_version"      : "10",
+    "browser_version" : "11",
+    "resolution"      : "1024x768"
+  },
+  {
+    "browserName"     : "chrome",
+    "os"              : "windows",
+    "os_version"      : "10",
+    "browser_version" : "52",
+    "resolution"      : "1024x768"
+  }
+]
