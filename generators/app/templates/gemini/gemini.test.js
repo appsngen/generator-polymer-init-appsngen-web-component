@@ -1,6 +1,6 @@
 'use strict';
 gemini.suite('suite', function (suite) {
-    suite.setUrl('/index.html')
+    suite.setUrl('/gemini/index.html')
         .setCaptureElements('button')
         .before(function (actions, find) {
             actions.waitForElementToShow('button');

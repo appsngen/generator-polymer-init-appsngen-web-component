@@ -49,6 +49,32 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        'gemini-runner': {
+            'local-update': {
+                options: {
+                    task: 'update',
+                    config: '.gemini-local.yml',
+                    local: true
+                }
+            },
+            'local-test': {
+                options: {
+                    task: 'test',
+                    config: '.gemini-local.yml',
+                    local: true
+                }
+            },
+            'remote-update': {
+                options: {
+                    task: 'update'
+                }
+            },
+            'remote-test': {
+                options: {
+                    task: 'test'
+                }
+            }
         }
     });
 
@@ -57,55 +83,33 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-artifactory-deploy');
     grunt.loadNpmTasks('grunt-browserstacktunnel-wrapper');
     grunt.loadNpmTasks('web-component-tester');
+    grunt.loadNpmTasks('grunt-gemini-runner');
 
-    grunt.registerTask('gemini', function(argv){
-        var directory = '.';
-        var cmd = 'gemini';
-        var next = this.async();
-        var gemini = grunt.util.spawn({
-            cmd: cmd,
-            args: argv?argv.split(','):['test'],
-            opts: {
-                cwd: directory
-            }
-        }, function (err, result, code) {
-            if (err) {
-                grunt.fail.fatal(err, code);
-                next(code);
-            } else {
-                grunt.log.ok();
-                next();
-            }
-        });
+    grunt.registerTask('wct-test-local', [
+        'wct-test:local'
+    ]);
 
-        if (typeof gemini === 'undefined') {
-            grunt.fail.fatal(cmd + ' task failed.');
-        }
-        gemini.stdout.on('data', function (buf) {
-            grunt.log.write(String(buf));
-        });
-        gemini.stderr.on('data', function (buf) {
-            grunt.log.error(String(buf));
-        });
-    });
-
-    grunt.registerTask('test-wct', [
+    grunt.registerTask('wct-test-remote', [
         'browserstacktunnel-wrapper:start',
         'wct-test:remote',
         'browserstacktunnel-wrapper:stop'
     ]);
 
-    grunt.registerTask('gemini-update', function () {
-        grunt.task.run('gemini:update');
-    });
+    grunt.registerTask('gemini-remote-update', [
+        'gemini-runner:remote-update'
+    ]);
 
-    grunt.registerTask('gemini-test', function () {
-        grunt.task.run('gemini:test');
-    });
+    grunt.registerTask('gemini-remote-test', [
+        'gemini-runner:remote-test'
+    ]);
 
-    grunt.registerTask('gemini-reporter', function () {
-        grunt.task.run('gemini:test,--reporter,html');
-    });
+    grunt.registerTask('gemini-local-update', [
+        'gemini-runner:local-update'
+    ]);
+
+    grunt.registerTask('gemini-local-test', [
+        'gemini-runner:local-test'
+    ]);
 
     grunt.registerTask('deploy', [
         'clean:beforebuild',

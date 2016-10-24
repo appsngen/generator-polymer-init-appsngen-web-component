@@ -5,23 +5,11 @@
 
 ## Getting Started
 
-### What is Yeoman?
+### AppsNgen-Web-Component Generator
 
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```
-$ npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
+Before install generator you need install all dependency:
+* Install python(https://www.python.org/downloads/) only 2.x.x version. After install you should add path to installed Python in system variable PATH;
+* Install Microsoft Visual Studio(Visual Studio Community 2015) https://www.visualstudio.com/downloads/. After installation, create a C++ project to download and initialize the required packages;
 
 To install generator-polymer-init-appsngen-web-component from npm, run:
 
@@ -35,13 +23,16 @@ Finally, initiate the generator:
 $ polymer init
 ```
 
-Also you can pass optinal `path` argument to generate widget at specified path.
+### Features 
 
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](http://yeoman.io/learning/index.html).
+All features you can use via Grunt task:
+* wct-test-local - run unit test via Web Component Tester(WCT) local;
+* wct-test-remote - run unit test via Web Component Tester(WCT) remote on Browserstack Cloud service;
+* gemini-local-update - updated reference screenshots via Gemini(WCT) local(Use PhantomJS);
+* gemini-local-test - run UI test via Gemini(WCT) local(Use PhantomJS);
+* gemini-remote-update - updated reference screenshots via Gemini(WCT) remote on Browserstack Cloud service;
+* gemini-remote-test - run UI test via Gemini(WCT) remote on Browserstack Cloud service;
+* deploy - deploy component to JFROG.
 
 ## License
 

@@ -1,55 +1,55 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../polymer/polymer.html">
 
 <dom-module id="<%= elementName %>">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
 
-      h2 {
-        color: red;
-      }
-      p {
-        color: blue;
-      }
+            h2 {
+                color: red;
+            }
+            p {
+                color: blue;
+            }
 
-      button {
-        position: relative;
-        background: #f00;
-        border: 0;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-        line-height: 31px;
-        font-size: 15px;
-        outline: 0;
-      }
+            button {
+                position: relative;
+                background: #f00;
+                border: 0;
+                box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+                line-height: 31px;
+                font-size: 15px;
+                outline: 0;
+            }
 
-      button:hover {
-        border-color: rgba(0, 0, 0, 0.5);
-      }
+            button:hover {
+                border-color: rgba(0, 0, 0, 0.5);
+            }
 
-      button:active {
-        background-color: #f6f5f3;
-        border-color: rgba(0, 0, 0, 0.5);
-      }
-    </style>
-    <h2>Hello [[name]]</h2>
-    <button id="button">Я Кнопка. А чего добился ты?</button>
-  </template>
+            button:active {
+                background-color: #f6f5f3;
+                border-color: rgba(0, 0, 0, 0.5);
+            }
+        </style>
+        <h2>Hello [[name]]</h2>
+        <button id="button">Я Кнопка. А чего добился ты?</button>
+    </template>
 
-  <script>
-    Polymer({
-      is: '<%= elementName %>',
+    <script>
+        Polymer({
+            is: '<%= elementName %>',
 
-      properties: {
-        name: {
-          type: String,
-          value: 'Name'
-        }
-      },
-      getName: function () {
-        return this.name;
-      }
-    });
-  </script>
+            properties: {
+                name: {
+                    type: String,
+                    value: 'Name'
+                }
+            },
+            getName: function () {
+                return this.name;
+            }
+        });
+    </script>
 </dom-module>

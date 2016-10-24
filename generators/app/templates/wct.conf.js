@@ -1,10 +1,10 @@
 var path = require('path');
 
 var ret = {
-  'suites': ['test'],
-  'webserver': {
-    'pathMappings': []
-  }
+    'suites': ['test'],
+    'webserver': {
+        'pathMappings': []
+    }
 };
 
 var mapping = {};
@@ -19,25 +19,24 @@ ret.webserver.pathMappings.push(mapping);
  * Adds BrowserStack config
  */
 function configBrowserStack(config) {
-  var user = 'USER_NAME';
-  var key = 'BROWSERSTACK_API_KEY';
-  if (!user || !key) {
-    throw new Error('Missing BrowserStack credentials. Did you forget to set BROWSERSTACK_USER and/or BROWSERSTACK_KEY?');
-  }
+    var user = 'USER_NAME';
+    var key = 'BROWSERSTACK_API_KEY';
+    if (!user || !key) {
+        throw new Error('Missing BrowserStack credentials. Did you forget to set BROWSERSTACK_USER and/or BROWSERSTACK_KEY?');
+    }
 
-  var url = process.env.BROWSERSTACK_URL
-    || 'http://' + user + ':' + key + '@hub.browserstack.com/wd/hub';
+    var url = process.env.BROWSERSTACK_URL || 'http://' + user + ':' + key + '@hub.browserstack.com/wd/hub';
 
-  var ALL_BROWSERS = require(__dirname + '/default-browserstack-browsers.json');
-  var browsers = ALL_BROWSERS.map(function(b) {
-    b['browserstack.local'] = 'true';
-    b['browserstack.debug'] = 'true';
-    b['url'] = url;
-    return b;
-  });
+    var ALL_BROWSERS = require(__dirname + '/default-browserstack-browsers.json');
+    var browsers = ALL_BROWSERS.map(function(b) {
+        b['browserstack.local'] = 'true';
+        b['browserstack.debug'] = 'true';
+        b['url'] = url;
+        return b;
+    });
 
-  config.activeBrowsers = config.activeBrowsers || [];
-  config.activeBrowsers = config.activeBrowsers.concat(browsers);
+    config.activeBrowsers = config.activeBrowsers || [];
+    config.activeBrowsers = config.activeBrowsers.concat(browsers);
 }
 
 configBrowserStack(ret);

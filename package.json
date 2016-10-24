@@ -1,7 +1,7 @@
 {
   "name": "generator-polymer-init-appsngen-web-component",
-  "version": "0.0.1",
-  "description": "Yeoman generator",
+  "version": "0.0.2",
+  "description": "Yeoman web-component generator",
   "author": {
     "name": "appsngen",
     "email": "developers@appsngen.com",
@@ -16,9 +16,7 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.23.0",
-    "chalk": "^1.0.0",
-    "yosay": "^1.0.0"
+    "yeoman-generator": "^0.23.0"
   },
   "devDependencies": {
     "yeoman-test": "^1.0.0",
