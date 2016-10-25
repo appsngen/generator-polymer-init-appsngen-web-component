@@ -4,7 +4,7 @@ var yeoman = require('yeoman-generator');
 module.exports = yeoman.Base.extend({
     prompting: function () {
 
-        var prompts = [{
+        let prompts = [{
             type: 'input',
             name: 'elementName',
             message: 'What would you like your root element to be called?',
@@ -20,21 +20,20 @@ module.exports = yeoman.Base.extend({
     writing: function () {
         const elementName = this.props.elementName;
 
-        var files = [
+        let files = [
             'gemini/gemini.test.js',
             'perfomance-test/perfomance-test.html',
-            '.gitignore',
             '.bowerrc',
             '.gemini.yml',
             '.gemini-local.yml',
             'browserstack.json',
-            'default-browserstack-browsers.json',
+            'wct-browserstack-browsers.json',
             'Gruntfile.js',
             'wct.conf.js',
             'README.md'
         ];
 
-        var templates = [
+        let templates = [
             'gemini/index.html',
             'perfomance-test/perfomance-test.html',
             'test/unit-test.html',
@@ -43,7 +42,7 @@ module.exports = yeoman.Base.extend({
             'package.json'
         ];
 
-        var i;
+        let i;
 
         for (i = 0; i < files.length; i++) {
             this.fs.copy(
@@ -59,6 +58,12 @@ module.exports = yeoman.Base.extend({
                 this.props
             );
         }
+
+        this.fs.copy(
+            this.templatePath('_gitignore'),
+            this.destinationPath('.gitignore'),
+            this.props
+        );
 
         this.fs.copyTpl(
             this.templatePath('src/_element.html'),

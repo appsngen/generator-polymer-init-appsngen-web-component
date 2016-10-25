@@ -1,6 +1,7 @@
 {
   "name": "<%= elementName %>",
   "version": "0.0.1",
+  "description": "Polymer element <%= elementName %>",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"
   },

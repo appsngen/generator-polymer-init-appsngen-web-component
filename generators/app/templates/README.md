@@ -2,6 +2,16 @@
 
 ### Features 
 
+Before use features you need set some values.
+
+For Browserstack you need set USER_NAME and/or API_KEY in files:
+* .gemini.yml
+* browserstack.json
+* Gruntfile.js
+* wct.conf.js
+
+And for JFROG you need set API_KEY in Gruntfile.js and REGISTRY_URL in .bowerrc.
+
 All features you can use via Grunt task:
 * wct-test-local - run unit test via Web Component Tester(WCT) local;
 * wct-test-remote - run unit test via Web Component Tester(WCT) remote on Browserstack Cloud service;

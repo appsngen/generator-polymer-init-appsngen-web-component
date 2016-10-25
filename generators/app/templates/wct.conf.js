@@ -27,7 +27,7 @@ function configBrowserStack(config) {
 
     var url = process.env.BROWSERSTACK_URL || 'http://' + user + ':' + key + '@hub.browserstack.com/wd/hub';
 
-    var ALL_BROWSERS = require(__dirname + '/default-browserstack-browsers.json');
+    var ALL_BROWSERS = require(__dirname + '/wct-browserstack-browsers.json');
     var browsers = ALL_BROWSERS.map(function(b) {
         b['browserstack.local'] = 'true';
         b['browserstack.debug'] = 'true';
