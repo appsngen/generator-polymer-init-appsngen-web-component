@@ -1,6 +1,0 @@
-{
-    "registry" : "REGISTRY_URL",
-    "resolvers" : [
-        "bower-art-resolver"
-    ]
-}
