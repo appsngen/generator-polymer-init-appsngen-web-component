@@ -23,7 +23,6 @@ module.exports = yeoman.Base.extend({
         let files = [
             'gemini/gemini.test.js',
             'performance-test/performance-test.html',
-            '.bowerrc',
             '.gemini.yml',
             '.gemini-local.yml',
             'browserstack.json',
