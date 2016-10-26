@@ -39,7 +39,10 @@ module.exports = function (grunt) {
         },
         'wct-test': {
             local: {
-                options: {browsers: ['chrome']}
+                options: {
+                    browsers: ['chrome'],
+                    enforceJsonConf: true
+                }
             },
             remote: {
                 options: {
