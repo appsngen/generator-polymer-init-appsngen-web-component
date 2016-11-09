@@ -11,6 +11,8 @@ Before install generator you need install all dependency:
 * Install python(https://www.python.org/downloads/) only 2.x.x version. After install you should add path to installed Python in system variable PATH;
 * Install Microsoft Visual Studio(Visual Studio Community 2015) https://www.visualstudio.com/downloads/. After installation, create a C++ project to download and initialize the required packages;
 * Install Gemini(npm install -g gemini);
+* Install gemini-browserstack(npm install -g gemini-browserstack);
+* Install gemini-express(npm install -g gemini-express);
 * Install PhantomJS(npm install -g phantomjs);
 
 To install generator-polymer-init-appsngen-web-component from npm, run:
