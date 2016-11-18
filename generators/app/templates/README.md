@@ -4,7 +4,7 @@
 
 Before use features you need set some values.
 
-For Browserstack you need set USER_NAME and/or API_KEY in files:
+For Browserstack you can set USER_NAME and/or API_KEY in files:
 * .gemini.yml
 * browserstack.json
 * Gruntfile.js
@@ -19,4 +19,6 @@ All features you can use via Grunt task:
 * gemini-local-test - run UI test via Gemini(WCT) local(Use PhantomJS);
 * gemini-remote-update - updated reference screenshots via Gemini(WCT) remote on Browserstack Cloud service;
 * gemini-remote-test - run UI test via Gemini(WCT) remote on Browserstack Cloud service;
+* browserstack-performance-test - run performance test via Browserstack-runner remote on Browserstack Cloud service;
+* update-keys - update keys using parameters from config.json;
 * deploy - deploy component to JFROG.

@@ -10,7 +10,7 @@ gemini.suite('suite', function (suite) {
         .capture('hover', function (actions) {
             actions.mouseMove(this.button);
         })
-        .capture('pressed', function (actions) {
+        .capture('pressed', {tolerance: 30}, function (actions) {
             actions.mouseDown(this.button);
         });
 });

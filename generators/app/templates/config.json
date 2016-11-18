@@ -1,0 +1,5 @@
+{
+    "browserstackUserName": "<%= browserstackUserName %>",
+    "browserstackAPIKey": "<%= browserstackAPIKey %>",
+    "jFrogAPIKey": "<%= jFrogAPIKey %>"
+}

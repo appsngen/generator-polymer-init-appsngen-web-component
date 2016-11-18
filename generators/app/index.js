@@ -4,12 +4,45 @@ var yeoman = require('yeoman-generator');
 module.exports = yeoman.Base.extend({
     prompting: function () {
 
-        let prompts = [{
-            type: 'input',
-            name: 'elementName',
-            message: 'What would you like your root element to be called?',
-            default: 'my-element'
-        }];
+        let prompts = [
+            {
+                type: 'input',
+                name: 'elementName',
+                message: 'What would you like your root element to be called?',
+                default: 'ngn-element',
+                validate: function (input) {
+                    var hyphenPosition = input.indexOf('-');
+                    var prefixPosition = input.indexOf('ngn');
+
+                    if (hyphenPosition === -1) {
+                        return 'Invalid element name. Elements must include a hyphen in their name. Please try again.';
+                    }
+
+                    if (prefixPosition !== 0) {
+                        return 'Invalid element name. Elements must include a ngn prefix in their name begin. Please try again.';
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'browserstackUserName',
+                message: 'Please enter your Browserstack user name.',
+                default: 'BROWSERSTACK_USER_NAME'
+            },
+            {
+                type: 'input',
+                name: 'browserstackAPIKey',
+                message: 'Please enter your Browserstack API key.',
+                default: 'BROWSERSTACK_API_KEY'
+            },
+            {
+                type: 'input',
+                name: 'jFrogAPIKey',
+                message: 'Please enter your JFROG API key.',
+                default: 'JFROG_API_KEY'
+            }
+        ];
 
         return this.prompt(prompts).then(function (props) {
             // To access props later use this.props.someAnswer;
@@ -22,9 +55,7 @@ module.exports = yeoman.Base.extend({
 
         let files = [
             'gemini/gemini.test.js',
-            '.gemini.yml',
             '.gemini-local.yml',
-            'browserstack.json',
             'wct-browserstack-browsers.json',
             'Gruntfile.js',
             'wct.conf.js',
@@ -33,11 +64,14 @@ module.exports = yeoman.Base.extend({
 
         let templates = [
             'gemini/index.html',
+            '.gemini.yml',
+            'browserstack.json',
             'performance-test/performance-test.html',
-            'test/unit-test.html',
+            'unit-test/unit-test.html',
             'bower.json',
             'index.html',
-            'package.json'
+            'package.json',
+            'config.json'
         ];
 
         let i;

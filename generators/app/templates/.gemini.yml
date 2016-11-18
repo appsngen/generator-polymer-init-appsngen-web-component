@@ -1,33 +1,27 @@
 rootUrl: http://localhost:8080
 gridUrl: http://this.address.is.ignored/so-anything-goes
+tolerance: 3
 
 system:
-  plugins:
-    browserstack:
-      username: USER_NAME
-      accessKey: BROWSERSTACK_API_KEY
-    express:
-      root: ./
-      port: 8080
+    plugins:
+        browserstack:
+            username: <%= browserstackUserName %>
+            accessKey: <%= browserstackAPIKey %>
+        express:
+            root: ./
+            port: 8080
 
 browsers:
-  ie11:
-    desiredCapabilities:
-      os: "WINDOWS"
-      os_version: "7"
-      browserName: "internet explorer"
-      version: "11"
+    ie11:
+        desiredCapabilities:
+            os: "WINDOWS"
+            os_version: "7"
+            browserName: "internet explorer"
+            version: "11"
 
-  ie10:
-    desiredCapabilities:
-      os: "WINDOWS"
-      os_version: "7"
-      browserName: "internet explorer"
-      version: "10"
-
-  chrome43:
-    desiredCapabilities:
-      os: "WINDOWS"
-      os_version: "10"
-      browserName: "chrome"
-      version: "43"
+    chrome43:
+        desiredCapabilities:
+            os: "WINDOWS"
+            os_version: "10"
+            browserName: "chrome"
+            version: "43"

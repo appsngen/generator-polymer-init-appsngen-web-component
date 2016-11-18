@@ -5,7 +5,8 @@ module.exports = function (grunt) {
     grunt.initConfig({
         meta: {
             dist: 'dist',
-            appName: grunt.file.readJSON('package.json').name
+            appName: grunt.file.readJSON('package.json').name,
+            config: grunt.file.readJSON('config.json')
         },
         clean: {
             beforebuild: ['<%= meta.dist %>/<%= meta.appName%>','<%= meta.dist %>/<%= meta.appName%>.tgz']
@@ -26,7 +27,7 @@ module.exports = function (grunt) {
         },
         artdeploy: {
             options: {
-                apiKey: 'JFROG_API_KEY',
+                apiKey: '<%= meta.config.jFrogAPIKey %>',
                 repositoryPath: 'https://appsngen.jfrog.io/appsngen/bower-local',
                 targetPath: '<%= meta.appName %>.tgz',
                 packagePath: '<%= meta.dist %>/<%= meta.appName%>.tgz'
@@ -34,7 +35,7 @@ module.exports = function (grunt) {
         },
         'browserstacktunnel-wrapper': {
             options: {
-                key: 'BROWSERSTACK_API_KEY'
+                key: '<%= meta.config.browserstackAPIKey %>'
             }
         },
         'wct-test': {
@@ -75,7 +76,18 @@ module.exports = function (grunt) {
             },
             'remote-test': {
                 options: {
-                    task: 'test'
+                    task: 'test',
+                    reporter: 'html'
+                }
+            }
+        },
+        'browserstack-performance-test': {
+            'test': {
+                options: {
+                    filePath: 'performance-test/result.xml',
+                    toConsole: true,
+                    toFile: true,
+                    numberOfRuns: 3
                 }
             }
         }
@@ -87,6 +99,28 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-browserstacktunnel-wrapper');
     grunt.loadNpmTasks('web-component-tester');
     grunt.loadNpmTasks('grunt-gemini-runner');
+    grunt.loadNpmTasks('grunt-browserstack-performance-test');
+
+    grunt.registerTask('update-keys', function(){
+        var config = grunt.file.readJSON('config.json');
+        var perfomanceTestConfig = grunt.file.readJSON('browserstack.json');
+        var YAML = require('yamljs');
+        var geminiConfig = YAML.load('.gemini.yml');
+        var geminiBrowserstackConfig = geminiConfig.system.plugins.browserstack;
+        var yamlString, jsonString;
+
+        geminiBrowserstackConfig.username = config.browserstackUserName;
+        geminiBrowserstackConfig.accessKey = config.browserstackAPIKey;
+
+        perfomanceTestConfig.username = config.browserstackUserName;
+        perfomanceTestConfig.key = config.browserstackAPIKey;
+
+        yamlString = YAML.stringify(geminiConfig, 4);
+        jsonString = JSON.stringify(perfomanceTestConfig, null, '\t');
+
+        grunt.file.write('.gemini.yml', yamlString);
+        grunt.file.write('browserstack.json', jsonString);
+    });
 
     grunt.registerTask('wct-test-local', [
         'wct-test:local'
@@ -112,6 +146,10 @@ module.exports = function (grunt) {
 
     grunt.registerTask('gemini-local-test', [
         'gemini-runner:local-test'
+    ]);
+
+    grunt.registerTask('performance-test', [
+        'browserstack-performance-test:test'
     ]);
 
     grunt.registerTask('deploy', [

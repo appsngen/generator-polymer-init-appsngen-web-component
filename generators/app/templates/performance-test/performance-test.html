@@ -14,18 +14,23 @@
 <body>
 <script>
     var start = performance.now();
-    var load, attached;
+    var load, attached, result;
     QUnit.module('Performance Tests');
 
     HTMLImports.whenReady(function () {
         load = performance.now() - start;
-        console.log('Load time: ' + load + 'ms');
     });
     document.addEventListener('WebComponentsReady', function() {
         attached = performance.now() - start;
-        console.log('Attached time: ' + attached + 'ms');
+        result = {
+            testResult: {
+                loadTime: load,
+                attachedTime: attached
+            }
+        };
+        console.log(JSON.stringify(result));
     });
 </script>
-<<%= elementName %>></<%= elementName %>>
+<my-element></my-element>
 </body>
 </html>

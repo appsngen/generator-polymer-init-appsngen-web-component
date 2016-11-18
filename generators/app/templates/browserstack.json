@@ -1,11 +1,17 @@
 {
-    "username": "USER_NAME",
-    "key": "BROWSERSTACK_API_KEY",
+    "username": "<%= browserstackUserName %>",
+    "key": "<%= browserstackAPIKey %>",
     "test_framework" : "qunit",
-    "test_path": "performance_test/performance-test.html",
+    "test_path": "performance-test/performance-test.html",
     "browsers": [
         {
             "browser": "chrome",
+            "browser_version": "latest",
+            "os": "Windows",
+            "os_version": "7"
+        },
+        {
+            "browser": "ie",
             "browser_version": "latest",
             "os": "Windows",
             "os_version": "7"

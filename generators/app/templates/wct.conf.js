@@ -1,12 +1,13 @@
 var path = require('path');
+var fs = require('fs');
 
+var configFile = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 var ret = {
-    'suites': ['test'],
+    'suites': ['unit-test'],
     'webserver': {
         'pathMappings': []
     }
 };
-
 var mapping = {};
 var rootPath = (__dirname).split(path.sep).slice(-1)[0];
 
@@ -19,8 +20,8 @@ ret.webserver.pathMappings.push(mapping);
  * Adds BrowserStack config
  */
 function configBrowserStack(config) {
-    var user = 'USER_NAME';
-    var key = 'BROWSERSTACK_API_KEY';
+    var user = configFile.browserstackUserName;
+    var key = configFile.browserstackAPIKey;
     if (!user || !key) {
         throw new Error('Missing BrowserStack credentials. Did you forget to set BROWSERSTACK_USER and/or BROWSERSTACK_KEY?');
     }

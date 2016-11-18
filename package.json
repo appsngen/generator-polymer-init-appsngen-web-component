@@ -1,6 +1,6 @@
 {
   "name": "generator-polymer-init-appsngen-web-component",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "AppsNgen web-component generator",
   "author": {
     "name": "appsngen",

@@ -13,6 +13,7 @@ Before install generator you need install all dependency:
 * Install Gemini(npm install -g gemini);
 * Install gemini-browserstack(npm install -g gemini-browserstack);
 * Install gemini-express(npm install -g gemini-express);
+* Install browserstack-runner(npm install -g browserstack-runner);
 * Install PhantomJS(npm install -g phantomjs);
 
 To install generator-polymer-init-appsngen-web-component from npm, run:
