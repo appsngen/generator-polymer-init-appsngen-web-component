@@ -1,11 +1,5 @@
 rootUrl: http://localhost:8080
 
-system:
-  plugins:
-    express:
-      root: ./
-      port: 8080
-
 browsers:
   PhantomJS:
     desiredCapabilities:

@@ -7,9 +7,6 @@ system:
         browserstack:
             username: <%= browserstackUserName %>
             accessKey: <%= browserstackAPIKey %>
-        express:
-            root: ./
-            port: 8080
 
 browsers:
     ie11:

@@ -12,15 +12,11 @@ module.exports = yeoman.Base.extend({
                 default: 'ngn-element',
                 validate: function (input) {
                     var hyphenPosition = input.indexOf('-');
-                    var prefixPosition = input.indexOf('ngn');
 
                     if (hyphenPosition === -1) {
                         return 'Invalid element name. Elements must include a hyphen in their name. Please try again.';
                     }
 
-                    if (prefixPosition !== 0) {
-                        return 'Invalid element name. Elements must include a ngn prefix in their name begin. Please try again.';
-                    }
                     return true;
                 }
             },
@@ -54,7 +50,6 @@ module.exports = yeoman.Base.extend({
         const elementName = this.props.elementName;
 
         let files = [
-            'gemini/gemini.test.js',
             '.gemini-local.yml',
             'wct-browserstack-browsers.json',
             'Gruntfile.js',
@@ -63,7 +58,8 @@ module.exports = yeoman.Base.extend({
         ];
 
         let templates = [
-            'gemini/index.html',
+            'demo/index.html',
+            'gemini/gemini.test.js',
             '.gemini.yml',
             'browserstack.json',
             'performance-test/performance-test.html',
