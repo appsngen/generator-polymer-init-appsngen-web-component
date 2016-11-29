@@ -1,6 +1,7 @@
+'use strict';
+
 var path = require('path');
 var fs = require('fs');
-
 var configFile = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 var ret = {
     'suites': ['test'],
@@ -23,7 +24,8 @@ function configBrowserStack(config) {
     var user = configFile.browserstackUserName;
     var key = configFile.browserstackAPIKey;
     if (!user || !key) {
-        throw new Error('Missing BrowserStack credentials. Did you forget to set BROWSERSTACK_USER and/or BROWSERSTACK_KEY?');
+        throw new Error('Missing BrowserStack credentials. ' +
+            'Did you forget to set BROWSERSTACK_USER and/or BROWSERSTACK_KEY?');
     }
 
     var url = process.env.BROWSERSTACK_URL || 'http://' + user + ':' + key + '@hub.browserstack.com/wd/hub';
