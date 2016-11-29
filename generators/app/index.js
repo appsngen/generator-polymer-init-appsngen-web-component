@@ -34,6 +34,12 @@ module.exports = yeoman.Base.extend({
             },
             {
                 type: 'input',
+                name: 'jFrogURL',
+                message: 'Please enter your JFROG artifactory URL.',
+                default: 'JFROG_ARTIFACTORY_URL'
+            },
+            {
+                type: 'input',
                 name: 'jFrogAPIKey',
                 message: 'Please enter your JFROG API key.',
                 default: 'JFROG_API_KEY'
@@ -63,10 +69,11 @@ module.exports = yeoman.Base.extend({
             '.gemini.yml',
             'browserstack.json',
             'performance-test/performance-test.html',
-            'unit-test/unit-test.html',
+            'test/unit-test.html',
             'bower.json',
             'index.html',
             'package.json',
+            '.bowerrc',
             'config.json'
         ];
 

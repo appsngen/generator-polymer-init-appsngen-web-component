@@ -46,7 +46,7 @@ All features you can use via Grunt task:
 * gemini-remote-test - run UI test via Gemini remote on Browserstack Cloud service;
 * performance-test - run performance test remote on Browserstack Cloud service;
 * update-keys - update Browserstack credential from config.json file;
-* deploy - deploy component to JFROG.
+* private-deploy - deploy component to JFROG.
 
 ## License
 

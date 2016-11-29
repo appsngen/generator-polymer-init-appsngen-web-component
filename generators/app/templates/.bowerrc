@@ -1,0 +1,6 @@
+{
+	"registry" : "<%= jFrogURL %>",
+	"resolvers" : [
+		"bower-art-resolver"
+	]
+}

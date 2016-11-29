@@ -3,7 +3,7 @@ var fs = require('fs');
 
 var configFile = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 var ret = {
-    'suites': ['unit-test'],
+    'suites': ['test'],
     'webserver': {
         'pathMappings': []
     }
