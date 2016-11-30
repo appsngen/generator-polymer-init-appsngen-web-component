@@ -5,16 +5,16 @@ module.exports = function (grunt) {
     grunt.initConfig({
         meta: {
             dist: 'dist',
-            appName: grunt.file.readJSON('package.json').name,
+            appInfo: grunt.file.readJSON('bower.json'),
             config: grunt.file.readJSON('config.json')
         },
         clean: {
-            beforebuild: ['<%= meta.dist %>/<%= meta.appName%>','<%= meta.dist %>/<%= meta.appName%>.tgz']
+            beforebuild: ['<%= meta.dist %>/<%= meta.appInfo.name%>','<%= meta.dist %>/<%= meta.appInfo.name%>.tgz']
         },
         compress: {
             main: {
                 options: {
-                    archive: '<%= meta.dist %>/<%= meta.appName%>.tgz'
+                    archive: '<%= meta.dist %>/<%= meta.appInfo.name%>.tgz'
                 },
                 files: [
                     {
@@ -27,10 +27,11 @@ module.exports = function (grunt) {
         },
         artdeploy: {
             options: {
-                apiKey: '<%= meta.config.jFrogAPIKey %>',
+                apiKey: 'AKCp2V6TnT1kG9zvHM91wTjnwdQmsHU9SoxpU4dyMz77qVzBC1sytkcyqZDHFTMCBkSJkKnSh',
                 repositoryPath: 'https://appsngen.jfrog.io/appsngen/bower-local',
-                targetPath: '<%= meta.appName %>.tgz',
-                packagePath: '<%= meta.dist %>/<%= meta.appName%>.tgz'
+                targetPath: '<%= meta.appInfo.name %>',
+                version: '<%= meta.appInfo.version %>',
+                packagePath: '<%= meta.dist %>/<%= meta.appInfo.name %>.tgz'
             }
         },
         'browserstacktunnel-wrapper': {
@@ -90,6 +91,34 @@ module.exports = function (grunt) {
                     numberOfRuns: 3
                 }
             }
+        },
+        jshint: {
+            options: {
+                extract: 'auto',
+                globals: {
+                    'gemini': true
+                }
+            },
+            toConsole: {
+                src: [
+                    'gemini/gemini.test.js',
+                    'test/unit-test.html',
+                    'performance-test/performance-test.html'
+                ]
+            }
+        },
+        jscs: {
+            src: [
+                'gemini/gemini.test.js',
+                'test',
+                'performance-test'
+            ],
+            options: {
+                extract: [
+                    'test/unit-test.html',
+                    'performance-test/performance-test.html'
+                ]
+            }
         }
     });
 
@@ -100,6 +129,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('web-component-tester');
     grunt.loadNpmTasks('grunt-gemini-runner');
     grunt.loadNpmTasks('grunt-browserstack-performance-test');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks("grunt-jscs");
 
     grunt.registerTask('update-keys', function(){
         var config = grunt.file.readJSON('config.json');
