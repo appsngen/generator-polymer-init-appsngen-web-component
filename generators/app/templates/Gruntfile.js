@@ -130,7 +130,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-gemini-runner');
     grunt.loadNpmTasks('grunt-browserstack-performance-test');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks("grunt-jscs");
+    grunt.loadNpmTasks('grunt-jscs');
 
     grunt.registerTask('update-keys', function(){
         var config = grunt.file.readJSON('config.json');
