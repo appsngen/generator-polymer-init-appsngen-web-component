@@ -12,25 +12,29 @@
     <link rel="import" href="../<%= elementName %>.html">
 </head>
 <body>
-<script>
-    var start = performance.now();
-    var load, attached, result;
-    QUnit.module('Performance Tests');
+    <script>
+        (function () {
+            'use strict';
+            var start = performance.now();
+            var load, attached, result;
 
-    HTMLImports.whenReady(function () {
-        load = performance.now() - start;
-    });
-    document.addEventListener('WebComponentsReady', function() {
-        attached = performance.now() - start;
-        result = {
-            testResult: {
-                loadTime: load,
-                attachedTime: attached
-            }
-        };
-        console.log(JSON.stringify(result));
-    });
-</script>
+            QUnit.module('Performance Tests');
+
+            HTMLImports.whenReady(function () {
+                load = performance.now() - start;
+            });
+            document.addEventListener('WebComponentsReady', function() {
+                attached = performance.now() - start;
+                result = {
+                    testResult: {
+                        loadTime: load,
+                        attachedTime: attached
+                    }
+                };
+                console.log(JSON.stringify(result));
+            });
+        })();
+    </script>
 <my-element></my-element>
 </body>
 </html>

@@ -18,16 +18,20 @@
     </template>
 </test-fixture>
 
-<script>
-    suite('<%= elementName %>', function() {
-        var element;
-        setup(function () {
-            element = fixture('basic');
-        });
-        test('get name', function() {
-            assert.equal(element.getName(), 'Name');
-        });
-    });
-</script>
+    <script>
+        (function () {
+            'use strict';
+            suite('<%= elementName %>', function() {
+                var element;
+
+                setup(function () {
+                    element = fixture('basic');
+                });
+                test('get name', function () {
+                    assert.equal(element.getName(), 'Name');
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

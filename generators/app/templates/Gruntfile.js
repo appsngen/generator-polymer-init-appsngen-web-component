@@ -93,12 +93,7 @@ module.exports = function (grunt) {
             }
         },
         jshint: {
-            options: {
-                extract: 'auto',
-                globals: {
-                    'gemini': true
-                }
-            },
+            options: grunt.file.readJSON('.hooks/js/config.json'),
             toConsole: {
                 src: [
                     'gemini/gemini.test.js',
@@ -114,6 +109,7 @@ module.exports = function (grunt) {
                 'performance-test'
             ],
             options: {
+                config: '.hooks/js/.jscsrc',
                 extract: [
                     'test/unit-test.html',
                     'performance-test/performance-test.html'
@@ -192,5 +188,13 @@ module.exports = function (grunt) {
         'clean:beforebuild',
         'compress',
         'artdeploy'
+    ]);
+
+    grunt.registerTask('lint', [
+        'jshint'
+    ]);
+
+    grunt.registerTask('jscs-check', [
+        'jscs'
     ]);
 };

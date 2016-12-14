@@ -61,7 +61,12 @@ module.exports = yeoman.Base.extend({
             'wct-browserstack-browsers.json',
             'Gruntfile.js',
             'wct.conf.js',
-            'README.md'
+            'README.md',
+            '.hooks/js/.jscsrc',
+            '.hooks/js/config.json',
+            '.hooks/js/ignore.txt',
+            '.hooks/js/shouldignore.js',
+            '.hooks/pre-commit'
         ];
 
         let templates = [
