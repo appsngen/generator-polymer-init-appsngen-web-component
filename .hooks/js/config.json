@@ -69,7 +69,6 @@
     "wsh"         : false,
 
     "yui"         : false,
-    "extract"     : "auto",
     "globals"       : {
         "$" : true,
         "jQuery" : true,
