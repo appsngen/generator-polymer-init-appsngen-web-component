@@ -1,5 +1,7 @@
 .idea
 node_modules
 bower_components
+dist
 gemini-report/**
 performance-test/result.xml
+npm-debug.log

@@ -1,6 +1,6 @@
 {
   "name": "generator-polymer-init-appsngen-web-component",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "AppsNgen web-component generator",
   "author": {
     "name": "appsngen",
@@ -31,7 +31,8 @@
     "gulp-mocha": "^2.0.0",
     "gulp-plumber": "^1.0.0",
     "gulp-nsp": "^2.1.0",
-    "gulp-coveralls": "^0.1.0"
+    "gulp-coveralls": "^0.1.0",
+    "path": "0.12.7"
   },
   "eslintConfig": {
     "extends": "xo-space",

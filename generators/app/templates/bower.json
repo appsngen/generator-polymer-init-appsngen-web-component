@@ -4,11 +4,11 @@
   "description": "Polymer element <%= elementName %>",
   "license": "MIT",
   "ignore": [
-      "node_modules",
-      "bower_components"
+    "node_modules",
+    "bower_components"
   ],
   "keywords": [
-      "web-component"
+    "web-component"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"

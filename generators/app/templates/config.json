@@ -2,5 +2,6 @@
     "browserstackUserName": "<%= browserstackUserName %>",
     "browserstackAPIKey": "<%= browserstackAPIKey %>",
     "jFrogAPIKey": "<%= jFrogAPIKey %>",
-    "jFrogURL": "<%= jFrogURL %>"
+    "jFrogRepositoryPath": "<%= jFrogRepositoryPath %>",
+    "jFrogRegistryURL": "<%= jFrogRegistryURL %>"
 }

@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 'use strict';
 var yeoman = require('yeoman-generator');
+var path = require('path');
 
 module.exports = yeoman.Base.extend({
     prompting: function () {
@@ -10,7 +11,7 @@ module.exports = yeoman.Base.extend({
                 type: 'input',
                 name: 'elementName',
                 message: 'What would you like your root element to be called?',
-                default: 'ngn-element',
+                default: process.cwd().split(path.sep).pop(),
                 validate: function (input) {
                     var hyphenPosition = input.indexOf('-');
 
@@ -34,16 +35,37 @@ module.exports = yeoman.Base.extend({
                 default: 'BROWSERSTACK_API_KEY'
             },
             {
+                type: 'confirm',
+                name: 'jFrog',
+                message: 'Would you like to use jFrog artifactory feature?',
+                default: false
+            },
+            {
                 type: 'input',
-                name: 'jFrogURL',
-                message: 'Please enter your JFROG artifactory URL.',
-                default: 'JFROG_ARTIFACTORY_URL'
+                name: 'jFrogRepositoryPath',
+                message: 'Please enter your JFROG repository path.',
+                default: 'JFROG_REPOSITORY_PATH',
+                when: function(answers){
+                    return answers.jFrog === true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'jFrogRegistryURL',
+                message: 'Please enter your JFROG registry URL.',
+                default: 'JFROG_REGISTRY_URL',
+                when: function(answers){
+                    return answers.jFrog === true;
+                }
             },
             {
                 type: 'input',
                 name: 'jFrogAPIKey',
                 message: 'Please enter your JFROG API key.',
-                default: 'JFROG_API_KEY'
+                default: 'JFROG_API_KEY',
+                when: function(answers){
+                    return answers.jFrog === true;
+                }
             }
         ];
 
@@ -59,7 +81,6 @@ module.exports = yeoman.Base.extend({
         let files = [
             '.gemini-local.yml',
             'wct-browserstack-browsers.json',
-            'Gruntfile.js',
             'wct.conf.js',
             'README.md',
             '.hooks/js/.jscsrc',
@@ -79,11 +100,22 @@ module.exports = yeoman.Base.extend({
             'bower.json',
             'index.html',
             'package.json',
-            '.bowerrc',
             'config.json'
         ];
 
         let i;
+
+        if (this.props.jFrog) {
+            this.fs.copyTpl(
+                this.templatePath('.bowerrc'),
+                this.destinationPath('.bowerrc'),
+                this.props
+            );
+        } else {
+            this.props.jFrogRepositoryPath = 'JFROG_REPOSITORY_URL';
+            this.props.jFrogRegistryURL = 'JFROG_REPOSITORY_PATH';
+            this.props.jFrogAPIKey = 'JFROG_API_KEY';
+        }
 
         for (i = 0; i < files.length; i++) {
             this.fs.copy(
@@ -110,6 +142,13 @@ module.exports = yeoman.Base.extend({
             this.templatePath('src/_element.html'),
             this.destinationPath(elementName + '.html'),
             this.props
+        );
+
+        this.fs.copyTpl(
+            this.templatePath('Gruntfile.js'),
+            this.destinationPath('Gruntfile.js'),
+            this.props,
+            {delimiter: '?'}
         );
     },
 

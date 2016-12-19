@@ -27,8 +27,8 @@ module.exports = function (grunt) {
         },
         artdeploy: {
             options: {
-                apiKey: 'AKCp2V6TnT1kG9zvHM91wTjnwdQmsHU9SoxpU4dyMz77qVzBC1sytkcyqZDHFTMCBkSJkKnSh',
-                repositoryPath: 'https://appsngen.jfrog.io/appsngen/bower-local',
+                apiKey: '<%= meta.config.jFrogAPIKey %>',
+                repositoryPath: '<%= meta.config.jFrogRepositoryPath %>',
                 targetPath: '<%= meta.appInfo.name %>',
                 version: '<%= meta.appInfo.version %>',
                 packagePath: '<%= meta.dist %>/<%= meta.appInfo.name %>.tgz'
@@ -98,7 +98,8 @@ module.exports = function (grunt) {
                 src: [
                     'gemini/gemini.test.js',
                     'test/unit-test.html',
-                    'performance-test/performance-test.html'
+                    'performance-test/performance-test.html',
+                    '<?= elementName ?>.html'
                 ]
             }
         },
@@ -112,7 +113,8 @@ module.exports = function (grunt) {
                 config: '.hooks/js/.jscsrc',
                 extract: [
                     'test/unit-test.html',
-                    'performance-test/performance-test.html'
+                    'performance-test/performance-test.html',
+                    '<?= elementName ?>.html'
                 ]
             }
         }
