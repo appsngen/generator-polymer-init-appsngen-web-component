@@ -153,7 +153,7 @@ module.exports = function (grunt) {
 
         grunt.file.write('.gemini.yml', yamlString);
         grunt.file.write('browserstack.json', performanceTestJSON);
-        grunt.file.write('browserstack.json', bowerrcJSON);
+        grunt.file.write('.bowerrc', bowerrcJSON);
     });
 
     grunt.registerTask('wct-test-local', [

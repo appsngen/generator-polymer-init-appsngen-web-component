@@ -15,23 +15,30 @@
     <script>
         (function () {
             'use strict';
-            var start = performance.now();
-            var load, attached, result;
+
+            var loadStart = performance.now();
+
+            var loadTime;
+            var attachTime;
 
             QUnit.module('Performance Tests');
 
-            HTMLImports.whenReady(function () {
-                load = performance.now() - start;
-            });
-            document.addEventListener('WebComponentsReady', function() {
-                attached = performance.now() - start;
-                result = {
-                    testResult: {
-                        loadTime: load,
-                        attachedTime: attached
-                    }
-                };
-                console.log(JSON.stringify(result));
+            QUnit.test('performanceTest', function (assert) {
+                var done = assert.async(2);
+
+                HTMLImports.whenReady(function () {
+                    loadTime = performance.now() - loadStart;
+
+                    assert.ok(loadTime, 'loadTime');
+                    done();
+                });
+
+                document.addEventListener('WebComponentsReady', function() {
+                    attachTime = performance.now() - loadStart;
+
+                    assert.ok(attachTime, 'attachTime');
+                    done();
+                });
             });
         })();
     </script>
