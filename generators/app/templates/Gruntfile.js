@@ -133,10 +133,10 @@ module.exports = function (grunt) {
     grunt.registerTask('update-keys', function(){
         var config = grunt.file.readJSON('config.json');
         var perfomanceTestConfig = grunt.file.readJSON('browserstack.json');
-        var bowerConfig = grunt.file.readJSON('.bowerrc');
         var YAML = require('yamljs');
         var geminiConfig = YAML.load('.gemini.yml');
         var geminiBrowserstackConfig = geminiConfig.system.plugins.browserstack;
+        var bowerConfig;
         var yamlString, performanceTestJSON, bowerrcJSON;
 
         geminiBrowserstackConfig.username = config.browserstackUserName;
@@ -145,15 +145,21 @@ module.exports = function (grunt) {
         perfomanceTestConfig.username = config.browserstackUserName;
         perfomanceTestConfig.key = config.browserstackAPIKey;
 
-        bowerConfig.registry = config.jFrogURL;
+        try {
+            bowerConfig = grunt.file.readJSON('.bowerrc');
+        } finally {
+            if (bowerConfig) {
+                bowerConfig.registry = config.jFrogURL;
+                bowerrcJSON = JSON.stringify(bowerConfig, null, 4);
+                grunt.file.write('.bowerrc', bowerrcJSON);
+            }
+        }
 
         yamlString = YAML.stringify(geminiConfig, 4);
-        performanceTestJSON = JSON.stringify(perfomanceTestConfig, null, '\t');
-        bowerrcJSON = JSON.stringify(bowerConfig, null, '\t');
+        performanceTestJSON = JSON.stringify(perfomanceTestConfig, null, 4);
 
         grunt.file.write('.gemini.yml', yamlString);
         grunt.file.write('browserstack.json', performanceTestJSON);
-        grunt.file.write('.bowerrc', bowerrcJSON);
     });
 
     grunt.registerTask('wct-test-local', [

@@ -103,6 +103,7 @@
         "assert": true,
         "fixture": true,
         "QUnit": true,
-        "HTMLImports": true
+        "HTMLImports": true,
+        "Polymer": true
     }
 }
