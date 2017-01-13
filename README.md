@@ -14,6 +14,7 @@ Before install generator you need install all dependency:
 * Install gemini-browserstack(npm install -g gemini-browserstack);
 * Install browserstack-runner(npm install -g browserstack-runner);
 * Install PhantomJS(npm install -g phantomjs);
+* Install The Artifactory Bower Resolver (npm install -g bower-art-resolver)
 
 To install generator-polymer-init-appsngen-web-component from npm, run:
 
