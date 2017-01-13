@@ -9,7 +9,7 @@
 
 Before generator installation you need to install all the dependencies:
 * Install python(https://www.python.org/downloads/) only 2.x.x version. After install you should add path to installed Python in system variable PATH;
-* Install Microsoft Visual Studio(Visual Studio Community 2015) https://www.visualstudio.com/downloads/. After installation, create a C++ project to download and initialize the required packages;
+* Install windows-build-tools (npm install -g windows-build-tools)
 * Install Gemini(npm install -g gemini);
 * Install gemini-browserstack(npm install -g gemini-browserstack);
 * Install browserstack-runner(npm install -g browserstack-runner);
@@ -45,7 +45,7 @@ You'll see suggested templates
 > appsngen-web-component - AppsNgen web-component generator
 ```
 
-Here additional `appsngen-web-component - AppsNgen web-component generator` line appears. 
+Here additional `appsngen-web-component - AppsNgen web-component generator` line appears.
 
 Select this line to run the process of generation of the *AppsNgen Web Component*. You will be guided through this process. Attribuetes to be entered are:
 * Name (required). Name of the component. We  suggest to start with `ngn-` prefix. Where `ngn` is shorten for the AppNgen.
@@ -53,12 +53,12 @@ Select this line to run the process of generation of the *AppsNgen Web Component
 * BROWSERSTACK_API_KEY (optional). Here is API Key used to run your tests in BrowserStack cloud.
 * Use private Artifactory Bower registry. (Default value is *No*). Generated code assumes posibility of storing resulting *Web Component* in private Bower registry
   * JFROG_REPOSITORY_PATH. Path toh the Artifactory repo
-  * JFROG_REGISTRY_URL. 
-  * JFROG_API_KEY. 
-  
+  * JFROG_REGISTRY_URL.
+  * JFROG_API_KEY.
 
 
-### Features 
+
+### Features
 
 Before use features you need set some values.
 
