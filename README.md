@@ -5,9 +5,9 @@
 
 ## Getting Started
 
-### AppsNgen-Web-Component Generator
+### Prerequisites
 
-Before install generator you need install all dependency:
+Before generator installation you need to install all the dependencies:
 * Install python(https://www.python.org/downloads/) only 2.x.x version. After install you should add path to installed Python in system variable PATH;
 * Install Microsoft Visual Studio(Visual Studio Community 2015) https://www.visualstudio.com/downloads/. After installation, create a C++ project to download and initialize the required packages;
 * Install Gemini(npm install -g gemini);
@@ -20,17 +20,43 @@ Before install generator you need install all dependency:
 $ npm install -g gemini gemini-browserstack browserstack-runner phantomjs bower-art-resolver
 ```
 
-To install generator-polymer-init-appsngen-web-component from npm, run:
+### AppsNgen-Web-Component Generator
+
+To install generator, run:
 
 ```
 $ npm install -g generator-polymer-init-appsngen-web-component
 ```
 
-Finally, initiate the generator:
+This generator extends [Polymer CLI](https://www.polymer-project.org/1.0/docs/tools/polymer-cli#overview). After you run
 
 ```
 $ polymer init
 ```
+
+You'll see suggested templates
+
+```
+? Which starter template would you like to use?
+  element - A blank element template
+  application - A blank application template
+  shop - The "Shop" Progressive Web App demo
+  starter-kit - A starter application template, with navigation and "PRPL pattern" loading
+> appsngen-web-component - AppsNgen web-component generator
+```
+
+Here additional `appsngen-web-component - AppsNgen web-component generator` line appears. 
+
+Select this line to run the process of generation of the *AppsNgen Web Component*. You will be guided through this process. Attribuetes to be entered are:
+* Name (required). Name of the component. We  suggest to start with `ngn-` prefix. Where `ngn` is shorten for the AppNgen.
+* BROWSERSTACK_USER_NAME (optional). Generated component will include some tests (both unit and UI) what can be run using [BrowserStack](https://www.browserstack.com) automation. Here is name of user to be used to connect to BrowserStack cloud.
+* BROWSERSTACK_API_KEY (optional). Here is API Key used to run your tests in BrowserStack cloud.
+* Use private Artifactory Bower registry. (Default value is *No*). Generated code assumes posibility of storing resulting *Web Component* in private Bower registry
+  * JFROG_REPOSITORY_PATH. Path toh the Artifactory repo
+  * JFROG_REGISTRY_URL. 
+  * JFROG_API_KEY. 
+  
+
 
 ### Features 
 
