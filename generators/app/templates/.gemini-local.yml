@@ -1,4 +1,4 @@
-rootUrl: http://localhost:8080
+rootUrl: http://localhost:8085
 
 browsers:
   PhantomJS:
