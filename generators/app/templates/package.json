@@ -1,13 +1,13 @@
 {
   "name": "<%= elementName %>",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "description": "Polymer element <%= elementName %>",
   "private": true,
   "devDependencies": {
     "grunt": "~1.0.0",
     "grunt-browserstacktunnel-wrapper": "0.0.6",
     "browserstacktunnel-wrapper": "1.4.2",
-    "grunt-gemini-runner": "0.1.8",
+    "grunt-gemini-runner": "0.1.9",
     "grunt-browserstack-performance-test": "0.1.9",
     "grunt-util-spawn": "~0.0.2",
     "web-component-tester": "~4.3.4",
