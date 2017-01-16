@@ -9,7 +9,9 @@
 
 Before generator installation you need to install all the dependencies:
 * Install python(https://www.python.org/downloads/) only 2.x.x version. After install you should add path to installed Python in system variable PATH;
-* Install windows-build-tools (npm install -g windows-build-tools)
+* Install build tools:
+  * For Windows: windows-build-tools (npm install -g windows-build-tools)
+  * For Linux: GCC@4.6 or higher;
 * Install Gemini(npm install -g gemini);
 * Install gemini-browserstack(npm install -g gemini-browserstack);
 * Install browserstack-runner(npm install -g browserstack-runner);
