@@ -1,15 +1,32 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var jsHintConfig = grunt.file.readJSON('.hooks/js/config.json');
+
+    jsHintConfig.reporter = require('jshint-html-reporter');
+    jsHintConfig.reporterOutput = 'jshint-report.html';
+
     // Project configuration.
     grunt.initConfig({
         meta: {
             dist: 'dist',
+            tmp: '.tmp',
             appInfo: grunt.file.readJSON('bower.json'),
             config: grunt.file.readJSON('config.json')
         },
         clean: {
+            beforejscs: ['<%= meta.tmp %>'],
+            afterjscs: ['<%= meta.tmp %>'],
             beforebuild: ['<%= meta.dist %>/<%= meta.appInfo.name%>','<%= meta.dist %>/<%= meta.appInfo.name%>.tgz']
+        },
+        copy: {
+            jscscheck: {
+                expand: true,
+                src: [
+                    '<?= elementName ?>.html'
+                ],
+                dest: '<%= meta.tmp %>'
+            }
         },
         compress: {
             main: {
@@ -93,7 +110,7 @@ module.exports = function (grunt) {
             }
         },
         jshint: {
-            options: grunt.file.readJSON('.hooks/js/config.json'),
+            options: jsHintConfig,
             toConsole: {
                 src: [
                     'gemini/gemini.test.js',
@@ -103,18 +120,21 @@ module.exports = function (grunt) {
                 ]
             }
         },
+        // .tmp folder is used to test the JS code into the HTML-file which lie in the root folder,
+        // because extract files should match path from src
         jscs: {
             src: [
                 'gemini/gemini.test.js',
                 'test',
-                'performance-test'
+                'performance-test',
+                '.tmp'
             ],
             options: {
                 config: '.hooks/js/.jscsrc',
                 extract: [
                     'test/unit-test.html',
                     'performance-test/performance-test.html',
-                    '<?= elementName ?>.html'
+                    '.tmp/<?= elementName ?>.html'
                 ]
             }
         }
@@ -203,6 +223,9 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('jscs-check', [
-        'jscs'
+        'clean:beforejscs',
+        'copy:jscscheck',
+        'jscs',
+        'clean:afterjscs'
     ]);
 };

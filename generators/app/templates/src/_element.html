@@ -42,18 +42,24 @@
     </template>
 
     <script>
-        Polymer({
-            is: '<%= elementName %>',
+        (function () {
+            'use strict';
+            // ignore jshint and jscs check error "Missing 'new' prefix when invoking a constructor"
+            // jscs:disable
+            Polymer({ // jshint ignore:line
+            // jscs:enable
+                is: '<%= elementName %>',
 
-            properties: {
-                name: {
-                    type: String,
-                    value: 'Name'
+                properties: {
+                    name: {
+                        type: String,
+                        value: 'Name'
+                    }
+                },
+                getName: function () {
+                    return this.name;
                 }
-            },
-            getName: function () {
-                return this.name;
-            }
-        });
+            });
+        })();
     </script>
 </dom-module>
