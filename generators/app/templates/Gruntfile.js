@@ -1,10 +1,11 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var jsHintConfig = grunt.file.readJSON('.hooks/js/config.json');
+    var jsHintDefaultConfig = grunt.file.readJSON('.hooks/js/config.json');
+    var jsHintReportConfig = grunt.file.readJSON('.hooks/js/config.json');
 
-    jsHintConfig.reporter = require('jshint-html-reporter');
-    jsHintConfig.reporterOutput = 'jshint-report.html';
+    jsHintReportConfig.reporter = require('jshint-html-reporter');
+    jsHintReportConfig.reporterOutput = 'jshint-report/jshint-report.html';
 
     // Project configuration.
     grunt.initConfig({
@@ -110,8 +111,17 @@ module.exports = function (grunt) {
             }
         },
         jshint: {
-            options: jsHintConfig,
+            options: jsHintDefaultConfig,
             toConsole: {
+                src: [
+                    'gemini/gemini.test.js',
+                    'test/unit-test.html',
+                    'performance-test/performance-test.html',
+                    '<?= elementName ?>.html'
+                ]
+            },
+            report: {
+                options: jsHintReportConfig,
                 src: [
                     'gemini/gemini.test.js',
                     'test/unit-test.html',
@@ -142,6 +152,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-artifactory-deploy');
     grunt.loadNpmTasks('grunt-browserstacktunnel-wrapper');
     grunt.loadNpmTasks('web-component-tester');
@@ -219,7 +230,11 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('lint', [
-        'jshint'
+        'jshint:report'
+    ]);
+
+    grunt.registerTask('lint-console', [
+        'jshint:toConsole'
     ]);
 
     grunt.registerTask('jscs-check', [
