@@ -18,6 +18,7 @@ Before generator installation you need to install all the dependencies:
 * Install PhantomJS(npm install -g phantomjs);
 * Install The Artifactory Bower Resolver (npm install -g bower-art-resolver)
 
+Run this command with admin rights
 ```
 $ npm install -g windows-build-tools gemini gemini-browserstack browserstack-runner phantomjs bower-art-resolver
 ```
