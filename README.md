@@ -19,7 +19,7 @@ Before generator installation you need to install all the dependencies:
 * Install The Artifactory Bower Resolver (npm install -g bower-art-resolver)
 
 ```
-$ npm install -g gemini gemini-browserstack browserstack-runner phantomjs bower-art-resolver
+$ npm install -g gemini gemini-browserstack browserstack-runner phantomjs bower-art-resolver windows-build-tools
 ```
 
 ### AppsNgen-Web-Component Generator
