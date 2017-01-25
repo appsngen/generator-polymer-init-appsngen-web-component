@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         clean: {
             beforejscs: ['<%= meta.tmp %>'],
             afterjscs: ['<%= meta.tmp %>'],
-            beforebuild: ['<%= meta.dist %>/<%= meta.appInfo.name%>','<%= meta.dist %>/<%= meta.appInfo.name%>.tgz']
+            beforebuild: ['<%= meta.dist %>/<%= meta.appInfo.name%>', '<%= meta.dist %>/<%= meta.appInfo.name%>.tgz']
         },
         copy: {
             jscscheck: {
@@ -115,6 +115,7 @@ module.exports = function (grunt) {
             toConsole: {
                 src: [
                     'gemini/gemini.test.js',
+                    'Gruntfile.js',
                     'test/unit-test.html',
                     'performance-test/performance-test.html',
                     '<?= elementName ?>.html'
@@ -124,6 +125,7 @@ module.exports = function (grunt) {
                 options: jsHintReportConfig,
                 src: [
                     'gemini/gemini.test.js',
+                    'Gruntfile.js',
                     'test/unit-test.html',
                     'performance-test/performance-test.html',
                     '<?= elementName ?>.html'
@@ -135,6 +137,7 @@ module.exports = function (grunt) {
         jscs: {
             src: [
                 'gemini/gemini.test.js',
+                'Gruntfile.js',
                 'test',
                 'performance-test',
                 '.tmp'
