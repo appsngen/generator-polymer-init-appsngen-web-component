@@ -20,5 +20,6 @@ All features you can use via Grunt task:
 * performance-test - run performance test remote on Browserstack Cloud service;
 * update-keys - update Browserstack credential from config.json file;
 * private-deploy - deploy component to JFROG;
-* lint - JSHint code check;
+* lint - JSHint code check and create report;
+* lint-console - JSHint code check to console;
 * jscs-check - JSCS code check.

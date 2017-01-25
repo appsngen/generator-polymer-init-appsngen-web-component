@@ -1,15 +1,33 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var jsHintDefaultConfig = grunt.file.readJSON('.hooks/js/config.json');
+    var jsHintReportConfig = grunt.file.readJSON('.hooks/js/config.json');
+
+    jsHintReportConfig.reporter = require('jshint-html-reporter');
+    jsHintReportConfig.reporterOutput = 'jshint-report/jshint-report.html';
+
     // Project configuration.
     grunt.initConfig({
         meta: {
             dist: 'dist',
+            tmp: '.tmp',
             appInfo: grunt.file.readJSON('bower.json'),
             config: grunt.file.readJSON('config.json')
         },
         clean: {
-            beforebuild: ['<%= meta.dist %>/<%= meta.appInfo.name%>','<%= meta.dist %>/<%= meta.appInfo.name%>.tgz']
+            beforejscs: ['<%= meta.tmp %>'],
+            afterjscs: ['<%= meta.tmp %>'],
+            beforebuild: ['<%= meta.dist %>/<%= meta.appInfo.name%>', '<%= meta.dist %>/<%= meta.appInfo.name%>.tgz']
+        },
+        copy: {
+            jscscheck: {
+                expand: true,
+                src: [
+                    '<?= elementName ?>.html'
+                ],
+                dest: '<%= meta.tmp %>'
+            }
         },
         compress: {
             main: {
@@ -93,28 +111,43 @@ module.exports = function (grunt) {
             }
         },
         jshint: {
-            options: grunt.file.readJSON('.hooks/js/config.json'),
+            options: jsHintDefaultConfig,
             toConsole: {
                 src: [
                     'gemini/gemini.test.js',
+                    'Gruntfile.js',
+                    'test/unit-test.html',
+                    'performance-test/performance-test.html',
+                    '<?= elementName ?>.html'
+                ]
+            },
+            report: {
+                options: jsHintReportConfig,
+                src: [
+                    'gemini/gemini.test.js',
+                    'Gruntfile.js',
                     'test/unit-test.html',
                     'performance-test/performance-test.html',
                     '<?= elementName ?>.html'
                 ]
             }
         },
+        // .tmp folder is used to test the JS code into the HTML-file which lie in the root folder,
+        // because extract files should match path from src
         jscs: {
             src: [
                 'gemini/gemini.test.js',
+                'Gruntfile.js',
                 'test',
-                'performance-test'
+                'performance-test',
+                '.tmp'
             ],
             options: {
                 config: '.hooks/js/.jscsrc',
                 extract: [
                     'test/unit-test.html',
                     'performance-test/performance-test.html',
-                    '<?= elementName ?>.html'
+                    '.tmp/<?= elementName ?>.html'
                 ]
             }
         }
@@ -122,6 +155,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-artifactory-deploy');
     grunt.loadNpmTasks('grunt-browserstacktunnel-wrapper');
     grunt.loadNpmTasks('web-component-tester');
@@ -199,10 +233,17 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('lint', [
-        'jshint'
+        'jshint:report'
+    ]);
+
+    grunt.registerTask('lint-console', [
+        'jshint:toConsole'
     ]);
 
     grunt.registerTask('jscs-check', [
-        'jscs'
+        'clean:beforejscs',
+        'copy:jscscheck',
+        'jscs',
+        'clean:afterjscs'
     ]);
 };

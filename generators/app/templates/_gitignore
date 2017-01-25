@@ -1,7 +1,9 @@
 .idea
+.tmp
 node_modules
 bower_components
 dist
 gemini-report/**
+jshint-report/**
 performance-test/result.xml
 npm-debug.log
