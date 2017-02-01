@@ -1,8 +1,13 @@
 language: node_js
 node_js:
-  - "5.6"
+ - "6.9.4"
 git:
-  depth: 3
-install: npm install -g jshint
+ depth: 3
+install:
+- npm install -g jshint
+- npm install jscs -g
+- npm install
 script:
 - jshint ./ --config ./.hooks/js/config.json
+- jscs ./ --config=./.hooks/js/.jscsrc
+- gulp test
