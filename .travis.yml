@@ -5,7 +5,7 @@ git:
  depth: 3
 install:
 - npm install -g jshint
-- npm install jscs -g
+- npm install -g jscs
 - npm install
 script:
 - jshint ./ --config ./.hooks/js/config.json
