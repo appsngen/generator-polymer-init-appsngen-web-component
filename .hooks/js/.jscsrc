@@ -113,5 +113,8 @@
     "requireSpaceAfterComma": true,
     "requireSpaceBeforeObjectValues": true,
     "requireSpacesInForStatement": true,
-    "requirePaddingNewLineAfterVariableDeclaration": true
+    "requirePaddingNewLineAfterVariableDeclaration": true,
+    "ignoreFiles": [
+        "node_modules/**/*"
+    ]
 }
