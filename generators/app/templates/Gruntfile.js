@@ -226,7 +226,7 @@ module.exports = function (grunt) {
         'browserstack-performance-test:test'
     ]);
 
-    grunt.registerTask('private-deploy', [
+    grunt.registerTask('deploy', [
         'clean:beforebuild',
         'compress',
         'artdeploy'
